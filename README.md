@@ -1,2 +1,4 @@
 # InterDevPinball-LeonhartYan
+In this game, I decided to investigate more about game juice. In my original thoughts, the action games may have the greatest juice overall, so I chose the theme to be “Warrior”. This pinball game features multiple ways to enhance its game juice: screen shaking, particle effects, and audio effects. Also, I used a very high score base, so players will get a shock at the high numbers and gain positive feedback. In the aesthetic aspect, I chose to show my respect to the style of Persona 5, with darkened red and black colors and harshly brushed sprites. I think that may create an impact on visuals to enhance the juice as well. During the development process, I self-learned a little about particle effects things. And, I used screen shake effects that I have created in my Intro to Dev Gamemaker projects. The logic is the same, with different codes.
+
 
