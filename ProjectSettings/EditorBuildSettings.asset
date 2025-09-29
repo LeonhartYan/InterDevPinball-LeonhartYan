@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pinball.unity
     guid: c36a65af6413c4dd78c3db3e28fdb92a
+  - enabled: 1
+    path: Assets/Scenes/PinballMenu.unity
+    guid: bd25c4c93dafc1c458b19602b7cf3d31
+  - enabled: 1
+    path: Assets/Scenes/PinballOver.unity
+    guid: 50548c3a26a93584892e80e1d404f8f0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

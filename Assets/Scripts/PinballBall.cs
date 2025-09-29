@@ -11,7 +11,7 @@ public class PinballBall : MonoBehaviour
     AudioSource myAudioSource;
 
     [SerializeField]
-    AudioClip bumperClip, wallClip, flipperClip, deadClip;
+    AudioClip bumperClip, wallClip, flipperClip, deadClip, bonusClip;
 
     Vector2 lastVel;
 
@@ -22,8 +22,11 @@ public class PinballBall : MonoBehaviour
     Camera myCamera;
 
     public bool onFlipper = false;
+    public bool accelerated = false;
     float flipperTimer = 0.0f;
     float flipperCooldown = 0.2f;
+    float acceleratorTimer = 0.0f;
+    float acceleratorCooldown = 1.5f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,6 +48,15 @@ public class PinballBall : MonoBehaviour
             {
                 onFlipper = false;
                 flipperTimer = 0.0f;
+            }
+        }
+        if (accelerated)
+        {
+            acceleratorTimer += Time.deltaTime;
+            if (acceleratorTimer >= acceleratorCooldown)
+            {
+                accelerated = false;
+                acceleratorTimer = 0.0f;
             }
         }
     }
@@ -88,12 +100,13 @@ public class PinballBall : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("direction"))
+        if (collision.CompareTag("scorer"))
         {
             if (collision.gameObject.GetComponent<PinballScorer>().canScore)
                 myManager.AddScore(collision.gameObject.GetComponent<PinballScorer>().scoreValue);
-            myBody.linearVelocity += (Vector2)collision.gameObject.transform.up;
-
+            myAudioSource.PlayOneShot(bonusClip);
+            if (myCamera.GetComponent<PinballCamera>().isShaking == false)
+                myCamera.GetComponent<PinballCamera>().isShaking = true;
         }
 
         if (collision.CompareTag("portal"))
@@ -106,7 +119,20 @@ public class PinballBall : MonoBehaviour
                 myManager.GetComponent<AudioSource>().PlayOneShot(myManager.teleportClip);
                 transform.position = collision.gameObject.GetComponent<PinballPortal>().targetPortal.position;
             }
-        }       
+        }
+
+        if (collision.CompareTag("accelerator"))
+        {
+            if (collision.gameObject.GetComponent<PinballScorer>().canScore)
+                myManager.AddScore(collision.gameObject.GetComponent<PinballScorer>().scoreValue);
+            if (!accelerated)
+            {
+                accelerated = true;
+                myBody.linearVelocity += (Vector2)collision.gameObject.transform.up * collision.gameObject.GetComponent<PinballAccelerator>().forceAmount;
+                if (myCamera.GetComponent<PinballCamera>().isShaking == false)
+                    myCamera.GetComponent<PinballCamera>().isShaking = true;
+            }
+        }
     }
 
 }

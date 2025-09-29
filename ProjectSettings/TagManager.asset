@@ -18,6 +18,8 @@ TagManager:
   - direction
   - rotator
   - portal
+  - accelerator
+  - scorer
   layers:
   - Default
   - TransparentFX

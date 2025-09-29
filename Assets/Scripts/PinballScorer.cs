@@ -6,6 +6,7 @@ public class PinballScorer : MonoBehaviour
     public bool canScore = true;
     [SerializeField]
     public int scoreValue;
+    [SerializeField]
     float scoreCooldown = 0.5f;
     float scoreTimer = 0.0f;
 

@@ -49,7 +49,7 @@ public class PinballFlipper : MonoBehaviour
             var contact = collision.collider.ClosestPoint(anchor.position);
             float distance = Vector2.Distance(contact, anchor.position);
             float distRatio = Mathf.Clamp01(distance / 2.0f);
-            collision.collider.GetComponent<Rigidbody2D>().AddForce(transform.up * flipPower/2 * distRatio * isMoving);
+            collision.collider.GetComponent<Rigidbody2D>().AddForce(transform.up * flipPower/1.25f * distRatio * isMoving);
 
         }
     }

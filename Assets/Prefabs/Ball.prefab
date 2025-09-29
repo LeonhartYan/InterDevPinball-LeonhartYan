@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4211006307576605902}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.70710677, z: -0.70710677, w: 0}
-  m_LocalPosition: {x: 0.89999896, y: -1.52, z: 12.656152}
+  m_LocalPosition: {x: 0.89999896, y: -1.52, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5005,9 +5005,11 @@ MonoBehaviour:
   wallClip: {fileID: 8300000, guid: eaed62cfe13ae2e4e928d4924b67f40d, type: 3}
   flipperClip: {fileID: 8300000, guid: 32f29386802fb2d489cf56a709797bc2, type: 3}
   deadClip: {fileID: 8300000, guid: 20bb2ea4418a79044bc0f37f3bd17df8, type: 3}
+  bonusClip: {fileID: 8300000, guid: a3d1fda74f1b33a4796bd18828ac8cfe, type: 3}
   myManager: {fileID: 0}
   myCamera: {fileID: 0}
   onFlipper: 0
+  accelerated: 0
 --- !u!82 &1558343269503049240
 AudioSource:
   m_ObjectHideFlags: 0

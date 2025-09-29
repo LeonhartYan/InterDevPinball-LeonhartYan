@@ -41,7 +41,7 @@ public class PinballLauncher : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            myBody.AddForce(transform.up * launchPower * 2);
+            myBody.AddForce(transform.up * launchPower);
             myAudioSource.PlayOneShot(launchClip);
             mySpring.distance = 2.5f;
         }
