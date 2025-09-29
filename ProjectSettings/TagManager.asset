@@ -16,6 +16,8 @@ TagManager:
   - ball
   - restart
   - direction
+  - rotator
+  - portal
   layers:
   - Default
   - TransparentFX

@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: fab6c9ddaf9784deebeb6acecbd7ea72
+guid: 8fed35b5884f95f4e8ce5dd9c225165e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -682061260844400398
-    second: redflower_0
-  - first:
-      213: 5033491625286984124
-    second: redflower_1
-  - first:
-      213: -5587891434656530198
-    second: redflower_2
-  - first:
-      213: -3756027262462746232
-    second: redflower_3
+      213: 8453890923445766294
+    second: Group 12_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -105,17 +96,56 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: redflower_0
+      name: Group 12_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 49
-        width: 154
-        height: 179
+        x: 0
+        y: 0
+        width: 171
+        height: 169
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f08050a5e4d886f0800000000000000
-      internalID: -682061260844400398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: redflower_1
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 29
-        width: 163
-        height: 203
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb16221f6fd8ad540800000000000000
-      internalID: 5033491625286984124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: redflower_2
-      rect:
-        serializedVersion: 2
-        x: 470
-        y: 37
-        width: 194
-        height: 170
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ae089d99852d372b0800000000000000
-      internalID: -5587891434656530198
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: redflower_3
-      rect:
-        serializedVersion: 2
-        x: 729
-        y: 11
-        width: 228
-        height: 172
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 881a936ea19efdbc0800000000000000
-      internalID: -3756027262462746232
+      spriteID: 69842e51101425570800000000000000
+      internalID: 8453890923445766294
       vertices: []
       indices: 
       edges: []
@@ -210,10 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      redflower_0: -682061260844400398
-      redflower_1: 5033491625286984124
-      redflower_2: -5587891434656530198
-      redflower_3: -3756027262462746232
+      Group 12_0: 8453890923445766294
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

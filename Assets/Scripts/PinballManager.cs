@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 public class PinballManager : MonoBehaviour
 {
     [SerializeField]
@@ -10,9 +11,14 @@ public class PinballManager : MonoBehaviour
     [SerializeField]
     int score; //var to track score
 
-    [SerializeField]
-    GameObject ballObj;
+    [SerializeField] GameObject ballPrefab;
+    [SerializeField] Transform respawnPoint;
     Vector3 ballStartPos;
+    GameObject currentBall;
+
+    public bool teleporting = false;
+    float teleTimer = 0.0f; 
+    float teleCooldown = 15.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,24 +26,33 @@ public class PinballManager : MonoBehaviour
         //set the score text to the score
         //b/c score is an int, it must be translated to a string
         //you can add strings together
-        scoreText.text = "Score: " + score.ToString();
-        ballStartPos = ballObj.transform.position;
+        ballStartPos = ballPrefab.transform.position;
         score = PlayerPrefs.GetInt("Score");
+        scoreText.text = "Score: " + score.ToString();
+        SpawnBall();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (teleporting)
+        {
+            teleTimer += Time.deltaTime;
+            if (teleTimer >= teleCooldown)
+            {
+                teleporting = false;
+                teleTimer = 0.0f;
+            }
+        }
     }
 
     //since we want to centralize macro game systems, i would probaly want to actually change
     //the score in the game manager
-    public void AddScore()
+    public void AddScore(int scoreAdd)
     {
         //add to score
         //do score effects maybe
-        score += 100;
+        score += scoreAdd;
         scoreText.text = "Score: " + score.ToString();
     }
 
@@ -46,9 +61,21 @@ public class PinballManager : MonoBehaviour
         if (collision.CompareTag("ball"))
         {
             PlayerPrefs.SetInt("Score", score);
-            SceneManager.LoadScene("Week2");
+            if (collision.gameObject == currentBall)
+            {
+                Destroy(currentBall);
+                SpawnBall();
+            }
+                    
             // ballObj.transform.position = ballStartPos;
 
         }
     }
+    public void SpawnBall()
+    {
+        var cam = GameObject.Find("Main Camera");
+        currentBall = Instantiate(ballPrefab, respawnPoint.position, respawnPoint.rotation);
+        cam.GetComponent<PinballCamera>().ballTransform = currentBall.transform;
+    }
 }
+

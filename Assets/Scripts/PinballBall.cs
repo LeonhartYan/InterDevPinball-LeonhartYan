@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PinballBall : MonoBehaviour
@@ -17,16 +18,35 @@ public class PinballBall : MonoBehaviour
     [SerializeField]
     PinballManager myManager;
 
+    [SerializeField]
+    Camera myCamera;
+
+    public bool onFlipper = false;
+    float flipperTimer = 0.0f;
+    float flipperCooldown = 0.2f;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //myBody = GetComponent<Rigidbody2D>();
         myAudioSource = GetComponent<AudioSource>();
+        myManager = GameObject.Find("Game Manager").GetComponent<PinballManager>();
+        myCamera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (onFlipper)
+        {
+            flipperTimer += Time.deltaTime;
+            if (flipperTimer >= flipperCooldown)
+            {
+                onFlipper = false;
+                flipperTimer = 0.0f;
+            }
+        }
     }
 
     //calls when a collision first occurs
@@ -35,13 +55,31 @@ public class PinballBall : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "bumper":
+                if (collision.gameObject.GetComponent<PinballBumper>().canScore)
+                    myManager.AddScore(collision.gameObject.GetComponent<PinballBumper>().scoreValue);
                 myAudioSource.PlayOneShot(bumperClip);
+                if(myCamera.GetComponent<PinballCamera>().isShaking == false)
+                myCamera.GetComponent<PinballCamera>().isShaking = true;
                 break;
             case "wall":
                 myAudioSource.PlayOneShot(wallClip);
                 break;
             case "flipper":
                 myAudioSource.PlayOneShot(flipperClip);
+                myBody.linearVelocity += (Vector2)collision.gameObject.transform.up;
+                break;
+            case "rotator":
+                if (collision.gameObject.GetComponent<PinballRotator>().canScore)
+                    myManager.AddScore(collision.gameObject.GetComponent<PinballRotator>().scoreValue);
+                myBody.AddForce(collision.gameObject.transform.up * 10.0f);
+                if(myCamera.GetComponent<PinballCamera>().isShaking == false)
+                myCamera.GetComponent<PinballCamera>().isShaking = true;
+                break;
+            case "restart":
+                Destroy(gameObject);
+                myManager.SpawnBall();
+               if(myCamera.GetComponent<PinballCamera>().isShaking == false)
+                myCamera.GetComponent<PinballCamera>().isShaking = true;
                 break;
         }
     }
@@ -50,11 +88,21 @@ public class PinballBall : MonoBehaviour
     {
         if (collision.CompareTag("direction"))
         {
-            // Vector2.dirVec = new Vector2(collision.gameObject.transform.up.x, collision.gameObject.transform.up.y)
-            //change data type
-            myManager.AddScore();
+            if (collision.gameObject.GetComponent<PinballScorer>().canScore)
+                myManager.AddScore(collision.gameObject.GetComponent<PinballScorer>().scoreValue);
             myBody.linearVelocity += (Vector2)collision.gameObject.transform.up;
 
+        }
+
+        if (collision.CompareTag("portal"))
+        {
+            if (collision.gameObject.GetComponent<PinballPortal>().canScore)
+                myManager.AddScore(collision.gameObject.GetComponent<PinballPortal>().scoreValue);
+            if (!myManager.teleporting)
+            {
+                myManager.teleporting = true;
+                transform.position = collision.gameObject.GetComponent<PinballPortal>().targetPortal.position;
+            }
         }       
     }
 

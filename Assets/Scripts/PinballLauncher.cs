@@ -34,7 +34,7 @@ public class PinballLauncher : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            myBody.AddForce(transform.up * launchPower);
+            myBody.AddForce(transform.up * launchPower * 2);
             mySpring.distance = 2.5f;
         }
     }
