@@ -15,11 +15,16 @@ public class PinballLauncher : MonoBehaviour
     [SerializeField]
     PinballBall ballScript;
 
+    [SerializeField]
+    AudioClip launchClip, chargeClip;
+    AudioSource myAudioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {   
         mySpring = GetComponent<SpringJoint2D>();
         myBody = GetComponent<Rigidbody2D>();
+        myAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,11 +35,14 @@ public class PinballLauncher : MonoBehaviour
             if (mySpring.distance > minDist)
             {
                 mySpring.distance -= 0.01f;
+                if (!myAudioSource.isPlaying)
+                    myAudioSource.PlayOneShot(chargeClip);
             }
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
             myBody.AddForce(transform.up * launchPower * 2);
+            myAudioSource.PlayOneShot(launchClip);
             mySpring.distance = 2.5f;
         }
     }

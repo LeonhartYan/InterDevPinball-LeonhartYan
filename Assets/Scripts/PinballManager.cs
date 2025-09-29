@@ -16,6 +16,10 @@ public class PinballManager : MonoBehaviour
     Vector3 ballStartPos;
     GameObject currentBall;
 
+    [SerializeField]
+    public AudioClip deadClip, BGMClip, teleportClip;
+    AudioSource myAudioSource;  
+
     public bool teleporting = false;
     float teleTimer = 0.0f; 
     float teleCooldown = 15.0f;
@@ -26,9 +30,12 @@ public class PinballManager : MonoBehaviour
         //set the score text to the score
         //b/c score is an int, it must be translated to a string
         //you can add strings together
+        myAudioSource = GetComponent<AudioSource>();
         ballStartPos = ballPrefab.transform.position;
+        PlayerPrefs.SetInt("Score", 0);
         score = PlayerPrefs.GetInt("Score");
         scoreText.text = "Score: " + score.ToString();
+        myAudioSource.Play();
         SpawnBall();
     }
 
@@ -64,6 +71,8 @@ public class PinballManager : MonoBehaviour
             if (collision.gameObject == currentBall)
             {
                 Destroy(currentBall);
+                GameObject.Find("Launched Trigger").GetComponent<PinballState>().isActive = false;
+                myAudioSource.PlayOneShot(deadClip);
                 SpawnBall();
             }
                     

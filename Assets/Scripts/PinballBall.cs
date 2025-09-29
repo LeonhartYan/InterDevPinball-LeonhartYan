@@ -11,7 +11,7 @@ public class PinballBall : MonoBehaviour
     AudioSource myAudioSource;
 
     [SerializeField]
-    AudioClip bumperClip, wallClip, flipperClip;
+    AudioClip bumperClip, wallClip, flipperClip, deadClip;
 
     Vector2 lastVel;
 
@@ -58,8 +58,8 @@ public class PinballBall : MonoBehaviour
                 if (collision.gameObject.GetComponent<PinballBumper>().canScore)
                     myManager.AddScore(collision.gameObject.GetComponent<PinballBumper>().scoreValue);
                 myAudioSource.PlayOneShot(bumperClip);
-                if(myCamera.GetComponent<PinballCamera>().isShaking == false)
-                myCamera.GetComponent<PinballCamera>().isShaking = true;
+                if (myCamera.GetComponent<PinballCamera>().isShaking == false)
+                    myCamera.GetComponent<PinballCamera>().isShaking = true;
                 break;
             case "wall":
                 myAudioSource.PlayOneShot(wallClip);
@@ -72,14 +72,16 @@ public class PinballBall : MonoBehaviour
                 if (collision.gameObject.GetComponent<PinballRotator>().canScore)
                     myManager.AddScore(collision.gameObject.GetComponent<PinballRotator>().scoreValue);
                 myBody.AddForce(collision.gameObject.transform.up * 10.0f);
-                if(myCamera.GetComponent<PinballCamera>().isShaking == false)
-                myCamera.GetComponent<PinballCamera>().isShaking = true;
+                myAudioSource.PlayOneShot(bumperClip);
+                if (myCamera.GetComponent<PinballCamera>().isShaking == false)
+                    myCamera.GetComponent<PinballCamera>().isShaking = true;
                 break;
             case "restart":
+                myAudioSource.PlayOneShot(deadClip);
                 Destroy(gameObject);
                 myManager.SpawnBall();
-               if(myCamera.GetComponent<PinballCamera>().isShaking == false)
-                myCamera.GetComponent<PinballCamera>().isShaking = true;
+                if (myCamera.GetComponent<PinballCamera>().isShaking == false)
+                    myCamera.GetComponent<PinballCamera>().isShaking = true;
                 break;
         }
     }
@@ -101,6 +103,7 @@ public class PinballBall : MonoBehaviour
             if (!myManager.teleporting)
             {
                 myManager.teleporting = true;
+                myManager.GetComponent<AudioSource>().PlayOneShot(myManager.teleportClip);
                 transform.position = collision.gameObject.GetComponent<PinballPortal>().targetPortal.position;
             }
         }       

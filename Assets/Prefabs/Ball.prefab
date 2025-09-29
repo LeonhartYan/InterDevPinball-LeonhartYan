@@ -5001,13 +5001,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBody: {fileID: 7042683946359107614}
-  bumperClip: {fileID: 8300000, guid: a976b7b628b104491929075418d3e89b, type: 3}
-  wallClip: {fileID: 8300000, guid: 23e0bd9a9dc1b44a7b7f62e1414d8da1, type: 3}
-  flipperClip: {fileID: 8300000, guid: 79b9fb73b1f824fcdb27251a124e6950, type: 3}
+  bumperClip: {fileID: 8300000, guid: 2b627dd188196ad44aa7be97e6a6b891, type: 3}
+  wallClip: {fileID: 8300000, guid: eaed62cfe13ae2e4e928d4924b67f40d, type: 3}
+  flipperClip: {fileID: 8300000, guid: 32f29386802fb2d489cf56a709797bc2, type: 3}
+  deadClip: {fileID: 8300000, guid: 20bb2ea4418a79044bc0f37f3bd17df8, type: 3}
   myManager: {fileID: 0}
   myCamera: {fileID: 0}
   onFlipper: 0
-  teleporting: 0
 --- !u!82 &1558343269503049240
 AudioSource:
   m_ObjectHideFlags: 0
